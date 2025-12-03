@@ -16,11 +16,10 @@ const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { label: "About", href: "#about" },
-    { label: "Skills", href: "#skills" },
-    { label: "Projects", href: "#projects" },
-    { label: "Experience", href: "#experience" },
-    { label: "Testimonials", href: "#testimonials" },
+    { label: "Over ons", href: "#about" },
+
+    { label: "Projecten", href: "#projects" },
+
     { label: "Contact", href: "#contact" },
   ];
 
@@ -44,7 +43,7 @@ const Navigation = () => {
             onClick={scrollToTop}
             className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent hover:opacity-80 transition-opacity"
           >
-            &lt;Taha Mlaiki/&gt;
+            &lt;CAD-PROJECTS/&gt;
           </button>
 
           {/* Desktop Navigation */}
@@ -59,9 +58,7 @@ const Navigation = () => {
                 {link.label}
               </a>
             ))}
-            <Button variant="hero" size="sm">
-              <a href="#contact">Hire Me</a>
-            </Button>
+         
           </div>
 
           {/* Mobile Menu Button */}

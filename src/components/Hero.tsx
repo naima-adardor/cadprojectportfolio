@@ -70,23 +70,25 @@ const Hero = () => {
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm">
                   <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                   <span className="text-sm text-primary font-semibold tracking-wider uppercase">
-                    Available for Opportunities
-                  </span>
+                  Open voor samenwerking aan uw volgende projecten                  </span>
                 </div>
 
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-                  Full Stack
+                Structural Design &
                   <br />
                   <span className="bg-gradient-primary bg-clip-text text-transparent">
-                    Developer
+                  BIM Agency
                   </span>
                 </h1>
               </div>
 
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl">
-                Crafting innovative web solutions with modern technologies.
-                Passionate about building scalable applications and exceptional
-                user experiences.
+              Betrouwbare partner voor studiebureaus en aannemers.<br></br>
+
+Bij CAD-PROJECTS vertalen we complexe bouwvisies naar duidelijke en uitvoerbare plannen.<br></br>
+Met focus op stabiliteitstekenwerk, BIM-modellering en automatisatie zorgen wij voor efficiënte, nauwkeurige en toekomstgerichte oplossingen.
+
+
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center pt-4">
@@ -100,41 +102,12 @@ const Hero = () => {
                       ?.scrollIntoView({ behavior: "smooth" })
                   }
                 >
-                  View My Work
-                  <ArrowDown className="group-hover:translate-y-1 transition-transform" />
+bekijk onze projecten                  <ArrowDown className="group-hover:translate-y-1 transition-transform" />
                 </Button>
-                <a href="/taha_cv_frensh.pdf" download>
-                  <Button variant="glass" size="lg">  
-                    <Download className="mr-2" />
-                    Download CV
-                  </Button>
-                </a>
+            
               </div>
 
-              <div className="flex gap-4 justify-center lg:justify-start items-center pt-6">
-                <a
-                  href="https://github.com/Taha-mlaiki"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-full border border-border bg-card hover:border-primary hover:bg-primary/10 transition-all hover:scale-110 transform duration-200 shadow-card hover:shadow-glow"
-                >
-                  <Github className="w-5 h-5" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/taha-mlaiki/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-full border border-border bg-card hover:border-secondary hover:bg-secondary/10 transition-all hover:scale-110 transform duration-200 shadow-card hover:shadow-accent"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </a>
-                <a
-                  href="mailto:mlaikitaha29@gmail.com"
-                  className="p-3 rounded-full border border-border bg-card hover:border-accent hover:bg-accent/10 transition-all hover:scale-110 transform duration-200 shadow-card hover:shadow-accent"
-                >
-                  <Mail className="w-5 h-5" />
-                </a>
-              </div>
+             
             </div>
           </div>
         </div>

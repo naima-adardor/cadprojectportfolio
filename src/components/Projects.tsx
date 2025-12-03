@@ -1,39 +1,28 @@
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ExternalLink, Github } from "lucide-react";
+import projet11 from "@/assets/projet1-1.png";
+import projet12 from "@/assets/projet1-2.png";
+import projet2 from "@/assets/projet2.png";
+import projet31 from "@/assets/projet3-1.png";
+import projet32 from "@/assets/projet3-2.png";
 
 const projects = [
   {
-    title: "CarePortal V1",
+    title: "OOSTERWEEL BYPASS",
     description:
-      "A web app that helps patients easily book medical appointments and allows cabinets to manage their schedules efficiently.",
-    techs: ["TypeScript", "Nextjs", "NextAuth", "Mongodb", "Prisma"],
-    link: "https://care-portal-mu.vercel.app/",
-    github: "https://github.com/Taha-mlaiki/CarePortal",
+      "Wij ondersteunden Tractebel bij het Oosterweel-project met de complexe wapening van het Bypass-gedeelte. Onze precisie in stabiliteitstekenwerk en BIM maakt uitdagende structuren haalbaar.",
+    images: [projet11, projet12],
   },
   {
-    title: "CarePortal V2",
+    title: "FUNDERINGSPLAAT INDUSTRIËLE OVENS",
     description:
-      "A web app that helps patients easily book medical appointments and allows cabinets to manage their schedules efficiently.",
-    techs: ["Php", "Laravel", "Next.js", "TypeScript", "Postgress", "Stripe"],
-    link: "",
-    github: "https://github.com/Taha-mlaiki/yc-file-rouge",
+      "Voor Vadecum Consult ontwierpen wij de funderingsplaat voor industriële ovens. De bekisting en wapening werden volledig in 3D (Revit) uitgewerkt.",
+    images: [projet2],
   },
   {
-    title: "Uknow platform",
+    title: "PORT OF ANTWERP - KANTOOR- EN MAGAZIJNRUIMTE",
     description:
-      "A web application where users can access educational content, manage courses, and track learning progress, while administrators can manage users, content, and platform settings efficiently.",
-    techs: ["Php", "MVC", "Javascript", "MySQL"],
-    link: "",
-    github: "https://github.com/Taha-mlaiki/Uknow",
-  },
-  {
-    title: "Ecommerce Website",
-    description:
-      "A store management platform for creating multiple stores, managing products, and tracking stock seamlessly",
-    techs: ["TypeScript", "Nextjs", "NextAuth", "Mongodb", "Prisma", "Stripe"],
-    link: "",
-    github: "https://github.com/Taha-mlaiki/ecommerce-websit",
+      "Wij ondersteunden STUDIE10 bij het Port of Antwerp-project met de uitwerking van de bekisting en wapening in 3D (Revit). Dankzij onze BIM-aanpak kreeg het project een helder en efficiënt uitvoeringsplan.",
+    images: [projet31, projet32],
   },
 ];
 
@@ -43,76 +32,60 @@ const Projects = () => {
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Featured{" "}
+            Onze{" "}
             <span className="bg-gradient-primary bg-clip-text text-transparent">
-              Projects
+              projecten
             </span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            A selection of my recent work
+            Een selectie van recente stabiliteits- en BIM-projecten
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="space-y-10">
           {projects.map((project, index) => (
             <Card
               key={index}
-              className="p-6 backdrop-blur-sm bg-card/50 border-border shadow-card hover:shadow-glow transition-all duration-300 hover:-translate-y-1 group flex flex-col"
+              className="p-6 backdrop-blur-sm bg-card/50 border-border shadow-card hover:shadow-glow transition-all duration-300 hover:-translate-y-1 group flex flex-col w-full"
             >
-              <div className="flex-1">
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.techs.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="text-xs px-3 py-1 rounded-full bg-muted text-muted-foreground border border-border"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+              <div className="flex-1 flex flex-col gap-4">
+                <div className="space-y-2">
+                  <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {project.description}
+                  </p>
                 </div>
-              </div>
-              <div className="flex gap-3">
-                {project.link && (
-                  <Button
-                    variant="default"
-                    size="sm"
-                    className="flex-1"
-                    asChild
-                  >
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      View
-                    </a>
-                  </Button>
+
+                {project.images && project.images.length > 0 && (
+                  <div className="flex flex-col gap-4">
+                    {project.images.map((img, i) => (
+                      <div
+                        key={i}
+                        className="aspect-video w-full overflow-hidden rounded-lg border border-border/60 bg-muted/40"
+                      >
+                        <img
+                          src={img}
+                          alt={`${project.title} ${i + 1}`}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                    ))}
+                  </div>
                 )}
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="flex-1 max-w-36"
-                  asChild
-                >
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github className="w-4 h-4" />
-                    Code
-                  </a>
-                </Button>
               </div>
             </Card>
           ))}
+
+          <Card className="p-8 text-center backdrop-blur-sm bg-card/80 border-border shadow-card hover:shadow-glow transition-all duration-300">
+            <h3 className="text-2xl md:text-3xl font-bold mb-3 bg-gradient-primary bg-clip-text text-transparent">
+              Uw visie, onze uitvoering.
+            </h3>
+            <p className="text-lg md:text-xl text-muted-foreground">
+              Samen bouwen we aan stabiliteit!
+            </p>
+          </Card>
         </div>
       </div>
     </section>

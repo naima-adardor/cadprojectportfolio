@@ -8,25 +8,24 @@ const Contact = () => {
       <div className="container mx-auto max-w-4xl">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Get In{" "}
+          Neem contact {" "}
             <span className="bg-gradient-primary bg-clip-text text-transparent">
-              Touch
+            op
             </span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            Let's discuss your next project
-          </p>
+            
+          Plannen die vorm moeten krijgen?           </p>
         </div>
 
         <Card className="p-8 md:p-12 backdrop-blur-sm bg-card/50 border-border shadow-card">
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-6">
               <div>
-                <h3 className="text-2xl font-semibold mb-4">Let's Connect</h3>
+                <h3 className="text-2xl font-semibold mb-4">Plannen die vorm moeten krijgen? </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  I'm always interested in hearing about new projects and
-                  opportunities. Whether you have a question or just want to say
-                  hi, feel free to reach out!
+                Wij luisteren graag en vertalen ze naar BIM en stabiliteit.
+                Een kort overleg is de start van een solide samenwerking
                 </p>
               </div>
 
@@ -41,45 +40,23 @@ const Contact = () => {
                   <span>mlaikitaha29@gmail.com</span>
                 </a>
 
-                <a
-                  href="https://linkedin.com/in/taha-mlaiki"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-foreground hover:text-primary transition-colors group"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <Linkedin className="w-5 h-5" />
-                  </div>
-                  <span>linkedin.com/in/taha-mlaiki</span>
-                </a>
-
-                <a
-                  href="https://github.com/taha-mlaiki"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-foreground hover:text-primary transition-colors group"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <Github className="w-5 h-5" />
-                  </div>
-                  <span>github.com/taha-mlaiki</span>
-                </a>
+  
+              
 
                 <div className="flex items-center gap-3 text-muted-foreground">
                   <div className="w-10 h-10 rounded-lg bg-muted/20 flex items-center justify-center">
                     <MapPin className="w-5 h-5" />
                   </div>
-                  <span>Agadir, Morocco</span>
+                  <span>3140 Keerbergen, Belgium</span>
                 </div>
               </div>
             </div>
 
             <div className="space-y-4">
               <div>
-                <h3 className="text-xl font-semibold mb-4">Quick Message</h3>
+                <h3 className="text-xl font-semibold mb-4">Snel bericht</h3>
                 <p className="text-sm text-muted-foreground mb-6">
-                  Send me a message and I'll get back to you as soon as
-                  possible.
+                Stuur me een bericht en ik neem zo snel mogelijk contact met je op.
                 </p>
               </div>
               <Button variant="hero" size="lg" className="w-full" asChild>
@@ -88,24 +65,14 @@ const Contact = () => {
                   Send Email
                 </a>
               </Button>
-              <Button variant="glass" size="lg" className="w-full" asChild>
-                <a
-                  href="https://linkedin.com/in/taha-mlaiki"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Linkedin className="w-5 h-5" />
-                  Connect on LinkedIn
-                </a>
-              </Button>
+              
             </div>
           </div>
         </Card>
 
         <div className="text-center mt-12 text-muted-foreground">
           <p>
-            &copy; 2025 Full Stack Developer Portfolio. Built with React &
-            Tailwind CSS.
+            &copy; 2025 CAD-Projects Portfolio. 
           </p>
         </div>
       </div>
