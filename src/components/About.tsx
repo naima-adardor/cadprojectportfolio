@@ -28,7 +28,7 @@ const About = () => {
             <Card className="p-6 backdrop-blur-sm bg-card/80 border-border shadow-card hover:shadow-accent transition-all duration-300">
               <h3 className="text-2xl font-semibold mb-2">Onze missie</h3>
               <p className="text-lg leading-relaxed">
-                Bij CAD-Projects geloven we dat sterke structuren beginnen met sterke plannen.
+                Bij CAD-Projects geloven we dat <b>sterke structuren beginnen met sterke plannen. </b>
                 Wij zorgen dat u kunt bouwen op zekerheid: plannen die kloppen, modellen die inzicht geven, en samenwerking die deadlines haalbaar maakt.
               </p>
             </Card>
@@ -36,46 +36,46 @@ const About = () => {
             <Card className="p-6 backdrop-blur-sm bg-card/80 border-border shadow-card hover:shadow-accent transition-all duration-300">
               <h3 className="text-2xl font-semibold mb-2">Wie wij zijn</h3>
               <p className="text-lg leading-relaxed">
-                CAD-Projects is een gespecialiseerd tekenbureau onder leiding van Erwin Rongé, met meer dan 20 jaar ervaring in stabiliteitstekenwerk. Wij ondersteunen studiebureaus en aannemers bij het uitwerken van bekistingsplannen, wapeningsplannen en BIM-modellen in AutoCAD en Revit.
+                CAD-Projects is een gespecialiseerd tekenbureau onder leiding van <b>Erwin Rongé</b>, met meer dan 20 jaar ervaring in <b>stabiliteitstekenwerk</b>. Wij ondersteunen studiebureaus en aannemers bij het uitwerken van <b>bekistingsplannen, wapeningsplannen en BIM-modellen in AutoCAD en Revit.</b>
               </p>
               <p className="text-lg leading-relaxed mt-2">
-                Onze kracht ligt in de combinatie van diepe technische kennis en een flexibel team. Waar anderen enkel tekenen, denken wij mee: we zorgen dat projecten helder, uitvoerbaar en foutloos worden uitgewerkt.
+                Onze kracht ligt in de combinatie van <b> diepe technische kennis </b> en een <b>flexibel team</b>. Waar anderen enkel tekenen, denken wij mee: we zorgen dat projecten helder, uitvoerbaar en foutloos worden uitgewerkt.
               </p>
             </Card>
 
             <Card className="p-6 backdrop-blur-sm bg-card/80 border-border shadow-card hover:shadow-accent transition-all duration-300">
               <h3 className="text-2xl font-semibold mb-2">Onze ervaring</h3>
               <p className="text-lg leading-relaxed">
-                Zaakvoerder Erwin Rongé startte zijn carrière in 1999 als monteur van prefab betonelementen. Vanuit die praktische basis groeide hij door tot bouwkundig tekenaar stabiliteit, met opdrachten in uiteenlopende sectoren:
+                Zaakvoerder <b>Erwin Rongé</b> startte zijn carrière in 1999 als monteur van prefab betonelementen. Vanuit die praktische basis groeide hij door tot bouwkundig tekenaar stabiliteit, met opdrachten in uiteenlopende sectoren:
               </p>
               <div className="space-y-2 mt-4">
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-primary flex-shrink-0 rounded-full mt-2" />
                   <p className="text-lg leading-relaxed">
-                    Industriële projecten (petrochemie, energie, kerncentrales)
+                    <b>Industriële projecten</b> (petrochemie, energie, kerncentrales)
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-primary flex-shrink-0 rounded-full mt-2" />
                   <p className="text-lg leading-relaxed">
-                    Publieke gebouwen (sporthallen, scholen, theaters, musea)
+                    <b>Publieke gebouwen</b> (sporthallen, scholen, theaters, musea)
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-primary flex-shrink-0 rounded-full mt-2" />
                   <p className="text-lg leading-relaxed">
-                    Residentiële projecten (appartementen, kantoren)
+                    <b>Residentiële projecten</b> (appartementen, kantoren)
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-primary flex-shrink-0 rounded-full mt-2" />
                   <p className="text-lg leading-relaxed">
-                    Grote infrastructuurwerken (bruggen, Oosterweel Bypass)
+                    <b>Grote infrastructuurwerken</b> (bruggen, Oosterweel Bypass)
                   </p>
                 </div>
               </div>
               <p className="text-lg leading-relaxed mt-4">
-                Door de jaren heen werkte hij samen met gerenommeerde partijen als Tractebel, Studie10, Vadecum consult en diverse aannemers.
+                Door de jaren heen werkte hij samen met gerenommeerde partijen als <b>Tractebel</b>, <b>Studie10</b>, <b>Vadecum consult</b> en diverse aannemers.
               </p>
             </Card>
 
@@ -131,25 +131,25 @@ const About = () => {
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-primary flex-shrink-0 rounded-full mt-2" />
                   <p className="text-lg leading-relaxed">
-                    Kwaliteit – elk plan wordt zorgvuldig nagekeken voor oplevering.
+                    <b>Kwaliteit</b> – elk plan wordt zorgvuldig nagekeken voor oplevering.
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-primary flex-shrink-0 rounded-full mt-2" />
                   <p className="text-lg leading-relaxed">
-                    Precisie & structuur – we brengen orde en duidelijkheid in complexe projecten.
+                    <b>Precisie & structuur</b> – we brengen orde en duidelijkheid in complexe projecten.
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-primary flex-shrink-0 rounded-full mt-2" />
                   <p className="text-lg leading-relaxed">
-                    Flexibiliteit – extra capaciteit wanneer u die nodig heeft.
+                    <b>Flexibiliteit</b> – extra capaciteit wanneer u die nodig heeft.
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-primary flex-shrink-0 rounded-full mt-2" />
                   <p className="text-lg leading-relaxed">
-                    BIM & innovatie – wij denken vooruit en modelleren met oog op de toekomst.
+                    <b>BIM & innovatie</b> – wij denken vooruit en modelleren met oog op de toekomst.
                   </p>
                 </div>
               </div>

@@ -70,7 +70,7 @@ const Hero = () => {
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm">
                   <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                   <span className="text-sm text-primary font-semibold tracking-wider uppercase">
-                  Open voor samenwerking aan uw volgende projecten                  </span>
+Open voor samenwerking aan uw volgende projecten.                  </span>
                 </div>
 
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
