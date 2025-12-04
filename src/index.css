@@ -8,7 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 220 15% 6%;
+    --background: 220 15% 20%;
     --foreground: 180 5% 98%;
 
     --card: 220 15% 8%;
@@ -20,13 +20,13 @@ All colors MUST be HSL.
     --primary: 180 85% 55%;
     --primary-foreground: 220 15% 6%;
 
-    --secondary: 280 75% 65%;
+    --secondary: 150 45% 35%;
     --secondary-foreground: 220 15% 6%;
 
     --muted: 220 10% 15%;
     --muted-foreground: 180 5% 70%;
 
-    --accent: 320 80% 60%;
+    --accent: 150 55% 45%;
     --accent-foreground: 180 5% 98%;
 
     --destructive: 0 62.8% 30.6%;
@@ -39,14 +39,14 @@ All colors MUST be HSL.
     --radius: 0.75rem;
 
     /* Custom design tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(180 85% 55%), hsl(280 75% 65%));
-    --gradient-accent: linear-gradient(135deg, hsl(280 75% 65%), hsl(320 80% 60%));
+    --gradient-primary: linear-gradient(135deg, hsl(165, 78%, 75%), hsl(163, 78%, 11%));
+    --gradient-accent: linear-gradient(135deg, hsl(153, 23%, 74%), hsl(149, 55%, 35%));
     --gradient-hero: linear-gradient(180deg, hsl(220 15% 6%) 0%, hsl(220 15% 10%) 50%, hsl(220 15% 6%) 100%);
     --glass-bg: hsl(220 15% 8% / 0.8);
     --glass-border: hsl(180 5% 98% / 0.1);
-    --shadow-glow: 0 0 30px hsl(180 85% 55% / 0.3);
+    --shadow-glow: 0 0 30px hsla(180, 81%, 4%, 0.3);
     --shadow-card: 0 4px 20px hsl(220 15% 0% / 0.5);
-    --shadow-accent: 0 0 40px hsl(280 75% 65% / 0.4);
+    --shadow-accent: 0 0 40px hsla(160, 83%, 12%, 0.4);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }

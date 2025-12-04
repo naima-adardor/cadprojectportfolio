@@ -7,7 +7,7 @@ import {
   Sparkles,
   Download,
 } from "lucide-react";
-import profileImg from "@/assets/profile.jpg";
+import profileImg from "@/assets/image.png";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const Hero = () => {
@@ -46,11 +46,13 @@ const Hero = () => {
 
               {/* Main Avatar */}
               <div className="relative">
-                <Avatar className="w-72 h-72 lg:w-96 lg:h-96 border-4 border-primary/50 shadow-glow group-hover:border-secondary/50 transition-all duration-500">
+                {/* Avatar background color approximates the light gradient of the logo */}
+                <Avatar className="w-72 h-72 lg:w-96 lg:h-96 border-4 border-primary/50 shadow-glow group-hover:border-secondary/50 transition-all duration-500 bg-[#9fc2b4] overflow-hidden p-2">
                   <AvatarImage
                     src={profileImg}
                     alt="Profile"
-                    className="object-cover"
+                    className="object-cover scale-[1.7] object-center"
+
                   />
                   <AvatarFallback className="text-6xl bg-gradient-primary text-primary-foreground">
                     FS
@@ -92,18 +94,20 @@ Met focus op stabiliteitstekenwerk, BIM-modellering en automatisatie zorgen wij 
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center pt-4">
-                <Button
-                  variant="hero"
-                  size="lg"
-                  className="group"
-                  onClick={() =>
-                    document
-                      .getElementById("projects")
-                      ?.scrollIntoView({ behavior: "smooth" })
-                  }
-                >
-bekijk onze projecten                  <ArrowDown className="group-hover:translate-y-1 transition-transform" />
-                </Button>
+              <Button
+  variant="hero"
+  size="lg"
+  className="group text-white"
+  onClick={() =>
+    document
+      .getElementById("projects")
+      ?.scrollIntoView({ behavior: "smooth" })
+  }
+>
+  Bekijk onze projecten
+  <ArrowDown className="group-hover:translate-y-1 transition-transform" />
+</Button>
+
             
               </div>
 

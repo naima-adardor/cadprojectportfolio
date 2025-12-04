@@ -16,7 +16,7 @@ const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { label: "Over ons", href: "#about" },
+
 
     { label: "Projecten", href: "#projects" },
 
@@ -43,7 +43,7 @@ const Navigation = () => {
             onClick={scrollToTop}
             className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent hover:opacity-80 transition-opacity"
           >
-            &lt;CAD-PROJECTS/&gt;
+      
           </button>
 
           {/* Desktop Navigation */}

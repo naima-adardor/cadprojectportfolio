@@ -1,3 +1,4 @@
+import { useState, useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import projet11 from "@/assets/projet1-1.png";
@@ -5,6 +6,16 @@ import projet12 from "@/assets/projet1-2.png";
 import projet2 from "@/assets/projet2.png";
 import projet31 from "@/assets/projet3-1.png";
 import projet32 from "@/assets/projet3-2.png";
+import projet41 from "@/assets/projet4-1.jpg";
+import projet42 from "@/assets/projet4-2.jpg";
+import projet5 from "@/assets/ST_A_01_W_page-0001 (1).jpg";
+import projet6 from "@/assets/ST_B_02_W_page-0001 (1).jpg";
+import projet7 from "@/assets/ST 06-F - Vloerplaat afdek +1_page-0001 (1).jpg";
+import projet8 from "@/assets/_DR_STR_003_page-0001 (1).jpg";
+import projet9 from "@/assets/ST_A_01_W_page-0001 (1).jpg";
+
+
+
 
 const projects = [
   {
@@ -24,6 +35,36 @@ const projects = [
     description:
       "Wij ondersteunden STUDIE10 bij het Port of Antwerp-project met de uitwerking van de bekisting en wapening in 3D (Revit). Dankzij onze BIM-aanpak kreeg het project een helder en efficiënt uitvoeringsplan.",
     images: [projet31, projet32],
+  },
+  {
+    title: "projet4",
+    description:
+      "test test test",
+    images: [projet41, projet42],
+  },
+  {
+    title: "projet5",
+    description:
+      "test test test",
+    images: [projet5],
+  },
+  {
+    title: "projet6",
+    description:
+      "test test test",
+    images: [projet6],
+  },
+  {
+    title: "projet7",
+    description:
+      "test test test",
+    images: [projet7],
+  },
+  {
+    title: "projet8",
+    description:
+      "test test test",
+    images: [projet8],
   },
 ];
 
@@ -51,7 +92,7 @@ const Projects = () => {
             >
               <div className="flex-1 flex flex-col gap-4">
                 <div className="space-y-2">
-                  <h3 className="text-2xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="text-2xl font-semibold mb-2 group-hover:text-[#A3C4A5] transition-colors">
                     {project.title}
                   </h3>
                   <p className="text-lg text-muted-foreground leading-relaxed">
@@ -84,39 +125,94 @@ const Projects = () => {
                         <b>helder en efficiënt uitvoeringsplan.</b>
                       </>
                     )}
+                    {index === 3 && (
+                      <>
+                        test test test
+                      </>
+                    )}
+                    {index === 4 && (
+                      <>
+                        test test test
+                      </>
+                    )}
+                    {index === 5 && (
+                      <>
+                        test test test
+                      </>
+                    )}
+                    {index === 6 && (
+                      <>
+                        test test test
+                      </>
+                    )}
+                    {index === 7 && (
+                      <>
+                        test test test
+                      </>
+                    )}
+                    {index === 8 && (
+                      <>
+                        test test test
+                      </>
+                    )}
                   </p>
                 </div>
 
                 {project.images && project.images.length > 0 && (
                   <div className="flex flex-col gap-4">
                     {project.images.map((img, i) => (
-                      <Dialog key={i}>
-                        <DialogTrigger asChild>
-                          <div className="aspect-video w-full overflow-hidden rounded-lg border border-border/60 bg-muted/40 cursor-pointer">
-                            <img
-                              src={img}
-                              alt={`${project.title} ${i + 1}`}
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                            />
-                          </div>
-                        </DialogTrigger>
-                        <DialogContent className="bg-black/90 border-none shadow-none p-0 sm:max-w-none w-full max-w-[95vw]">
-                          <div className="flex items-center justify-center w-full h-full">
-                            <img
-                              src={img}
-                              alt={`${project.title} ${i + 1}`}
-                              className="max-h-[90vh] max-w-[90vw] object-contain rounded-lg"
-                            />
-                          </div>
-                        </DialogContent>
-                      </Dialog>
+                      <ZoomableProjectImage key={i} src={img} alt={`${project.title} ${i + 1}`} />
                     ))}
                   </div>
                 )}
               </div>
             </Card>
           ))}
-
+ <Card className="p-6 backdrop-blur-sm bg-card/80 border-border shadow-card hover:shadow-accent transition-all duration-300">
+              <h3 className="text-2xl font-semibold mb-2">Enkele referentieprojecten</h3>
+              <div className="space-y-2 mt-2">
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-primary flex-shrink-0 rounded-full mt-2" />
+                  <p className="text-lg leading-relaxed">Sporthal – Deurne</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-primary flex-shrink-0 rounded-full mt-2" />
+                  <p className="text-lg leading-relaxed">Kantoorgebouw Port of Antwerp</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-primary flex-shrink-0 rounded-full mt-2" />
+                  <p className="text-lg leading-relaxed">Appartementen Guldendael – Mechelen</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-primary flex-shrink-0 rounded-full mt-2" />
+                  <p className="text-lg leading-relaxed">School – Sint-Niklaas</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-primary flex-shrink-0 rounded-full mt-2" />
+                  <p className="text-lg leading-relaxed">Fluxis kantorencomplex – Wetteren</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-primary flex-shrink-0 rounded-full mt-2" />
+                  <p className="text-lg leading-relaxed">MAS – Antwerpen</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-primary flex-shrink-0 rounded-full mt-2" />
+                  <p className="text-lg leading-relaxed">Nieuwe VRT gebouw - Brussel</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-primary flex-shrink-0 rounded-full mt-2" />
+                  <p className="text-lg leading-relaxed">Oosterweel Bypass – Antwerpen</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-primary flex-shrink-0 rounded-full mt-2" />
+                  <p className="text-lg leading-relaxed">Elia kantoorgebouw – Oostende</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-primary flex-shrink-0 rounded-full mt-2" />
+                  <p className="text-lg leading-relaxed">Ziekenhuis Lokeren</p>
+                </div>
+              </div>
+            </Card>
           <Card className="p-8 text-center backdrop-blur-sm bg-card/80 border-border shadow-card hover:shadow-glow transition-all duration-300">
             <h3 className="text-2xl md:text-3xl font-bold mb-3 bg-gradient-primary bg-clip-text text-transparent">
               Uw visie, onze uitvoering.
@@ -132,3 +228,163 @@ const Projects = () => {
 };
 
 export default Projects;
+
+type ZoomableProjectImageProps = {
+  src: string;
+  alt: string;
+};
+
+// const ZoomableProjectImage = ({ src, alt }: ZoomableProjectImageProps) => {
+//   const [open, setOpen] = useState(false);
+//   const [zoomed, setZoomed] = useState(false);
+
+//   const toggleZoom = () => {
+//     setZoomed((prev) => !prev);
+//   };
+
+//   const handleOpenChange = (value: boolean) => {
+//     setOpen(value);
+//     if (!value) {
+//       setZoomed(false);
+//     }
+//   };
+
+//   return (
+//     <Dialog open={open} onOpenChange={handleOpenChange}>
+//       <DialogTrigger asChild>
+//         <div className="aspect-video w-full overflow-hidden rounded-lg border border-border/60 bg-muted/40 cursor-pointer">
+//           <img src={src} alt={alt} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+//         </div>
+//       </DialogTrigger>
+//       <DialogContent className="bg-black/90 border-none shadow-none p-0 sm:max-w-none w-full max-w-[95vw]">
+//         <div className="flex flex-col gap-4 w-full h-full">
+//           <div className="flex justify-end items-center gap-3 text-white/80 text-xs px-4 pt-4">
+//             <span>{zoomed ? "Cliquez pour réduire" : "Cliquez pour zoomer"}</span>
+//           </div>
+//           <div className="flex-1 flex items-center justify-center overflow-auto p-4">
+//             <img
+//               src={src}
+//               alt={alt}
+//               onClick={toggleZoom}
+//               className={`object-contain rounded-lg transition-transform duration-300 ${
+//                 zoomed ? "scale-150 cursor-zoom-out" : "cursor-zoom-in"
+//               }`}
+//               style={{ maxHeight: "90vh", maxWidth: "90vw" }}
+//             />
+//           </div>
+//         </div>
+//       </DialogContent>
+//     </Dialog>
+//   );
+// };
+const ZoomableProjectImage = ({ src, alt }: ZoomableProjectImageProps) => {
+  const [open, setOpen] = useState(false);
+  const [scale, setScale] = useState(1);
+  const [origin, setOrigin] = useState({ x: 50, y: 50 });
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [dragging, setDragging] = useState(false);
+
+  const MIN_ZOOM = 1;
+  const MAX_ZOOM = 4;      // 🔥 ZOOM MAX
+  const ZOOM_STEP = 0.2;   // 🔥 Sensibilité roulette
+
+  const lastMouse = useRef<{ x: number; y: number } | null>(null);
+
+  const handleWheel = (e: React.WheelEvent<HTMLImageElement>) => {
+    e.preventDefault();
+
+    const rect = e.currentTarget.getBoundingClientRect();
+    const mouseX = ((e.clientX - rect.left) / rect.width) * 100;
+    const mouseY = ((e.clientY - rect.top) / rect.height) * 100;
+
+    setOrigin({ x: mouseX, y: mouseY });
+
+    setScale((prev) => {
+      const next =
+        e.deltaY < 0 ? prev + ZOOM_STEP : prev - ZOOM_STEP;
+      return Math.min(Math.max(next, MIN_ZOOM), MAX_ZOOM);
+    });
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (scale <= 1) return;
+    setDragging(true);
+    lastMouse.current = { x: e.clientX, y: e.clientY };
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!dragging || !lastMouse.current) return;
+
+    const dx = e.clientX - lastMouse.current.x;
+    const dy = e.clientY - lastMouse.current.y;
+
+    setPosition((prev) => ({
+      x: prev.x + dx,
+      y: prev.y + dy,
+    }));
+
+    lastMouse.current = { x: e.clientX, y: e.clientY };
+  };
+
+  const handleMouseUp = () => {
+    setDragging(false);
+    lastMouse.current = null;
+  };
+
+  const resetZoom = () => {
+    setScale(1);
+    setPosition({ x: 0, y: 0 });
+  };
+
+  const handleOpenChange = (value: boolean) => {
+    setOpen(value);
+    if (!value) resetZoom();
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={handleOpenChange}>
+      <DialogTrigger asChild>
+        <div className="aspect-video w-full overflow-hidden rounded-lg border border-border/60 bg-muted/40 cursor-pointer">
+          <img
+            src={src}
+            alt={alt}
+            className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+          />
+        </div>
+      </DialogTrigger>
+
+      <DialogContent className="bg-black/90 border-none shadow-none p-0 sm:max-w-none w-full max-w-[95vw]">
+        <div className="flex flex-col w-full h-full">
+          <div className="text-white/70 text-xs px-4 pt-4 text-right">
+            
+          </div>
+
+          <div
+            className="flex-1 flex items-center justify-center overflow-hidden p-4"
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+          >
+            <img
+              src={src}
+              alt={alt}
+              onWheel={handleWheel}
+              onMouseDown={handleMouseDown}
+              onDoubleClick={resetZoom}
+              draggable={false}
+              className={`rounded-lg select-none ${
+                scale > 1 ? "cursor-grab active:cursor-grabbing" : "cursor-zoom-in"
+              }`}
+              style={{
+                transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
+                transformOrigin: `${origin.x}% ${origin.y}%`,
+                maxWidth: "90vw",
+                maxHeight: "90vh",
+              }}
+            />
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
