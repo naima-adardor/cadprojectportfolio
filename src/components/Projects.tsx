@@ -1,7 +1,7 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
-import { Eye, X } from "lucide-react";
+import { IFCViewer } from "@/components/IFCViewer";
 import projet11 from "@/assets/projet1-1.png";
 import projet12 from "@/assets/projet1-2.png";
 import projet2 from "@/assets/projet2.png";
@@ -13,136 +13,6 @@ import projet5 from "@/assets/ST_A_01_W_page-0001 (1).jpg";
 import projet6 from "@/assets/ST_B_02_W_page-0001 (1).jpg";
 import projet7 from "@/assets/ST 06-F - Vloerplaat afdek +1_page-0001 (1).jpg";
 import projet8 from "@/assets/_DR_STR_003_page-0001 (1).jpg";
-
-// Composant IFC Viewer
-const IFCViewer = ({ ifcUrl, title }: { ifcUrl: string; title: string }) => {
-  const [open, setOpen] = useState(false);
-  const viewerRef = useRef<HTMLDivElement>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (open && viewerRef.current) {
-      loadIFCViewer();
-    }
-  }, [open]);
-
-  const loadIFCViewer = async () => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const script = document.createElement('script');
-      script.src = 'https://unpkg.com/web-ifc-viewer@1.0.218/dist/web-ifc-viewer.js';
-      script.async = true;
-
-      // ... dans script.onload ...
-      script.onload = async () => {
-        try {
-          const container = viewerRef.current;
-          if (!container) {
-            console.error("Le conteneur de visualisation (viewerRef) n'existe pas.");
-            setLoading(false);
-            return;
-          }
-
-          // Vérifiez si la classe est bien disponible
-          if (!(window as any).IfcViewerAPI) {
-            console.error("IfcViewerAPI n'est pas défini après le chargement du script.");
-            setError("La bibliothèque IFC Viewer n'a pas été chargée correctement.");
-            setLoading(false);
-            return;
-          }
-
-          const viewer = new (window as any).IfcViewerAPI({ container });
-
-          await viewer.IFC.setWasmPath('https://unpkg.com/web-ifc@0.0.44/');
-
-          // Vérifiez la réponse de la requête
-          const response = await fetch(ifcUrl);
-          if (!response.ok) {
-            throw new Error(`Erreur HTTP: ${response.status}`);
-          }
-
-          const blob = await response.blob();
-          const file = new File([blob], 'ifc.ifc');
-
-          await viewer.IFC.loadIfc(file, true);
-          viewer.context.fitToFrame();
-
-          setLoading(false);
-        } catch (err) {
-          console.error("Erreur détaillée lors du chargement du modèle IFC:", err);
-          setError(`Erreur lors du chargement du modèle IFC: ${err instanceof Error ? err.message : String(err)}`);
-          setLoading(false);
-        }
-      };
-
-      script.onerror = () => {
-        setError("Impossible de charger le viewer IFC");
-        setLoading(false);
-      };
-
-      document.body.appendChild(script);
-
-      return () => {
-        if (document.body.contains(script)) {
-          document.body.removeChild(script);
-        }
-      };
-    } catch (err) {
-      setError("Erreur lors de l'initialisation");
-      setLoading(false);
-    }
-  };
-
-  return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <div className="aspect-video w-full overflow-hidden rounded-lg border-2 border-dashed border-[#A3C4A5]/50 bg-muted/40 cursor-pointer hover:border-[#A3C4A5] hover:bg-[#A3C4A5]/5 transition-all duration-300 flex flex-col items-center justify-center gap-3 group">
-          <div className="w-16 h-16 rounded-full bg-[#A3C4A5]/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-            <Eye className="w-8 h-8 text-[#A3C4A5]" />
-          </div>
-          <div className="text-center">
-            <p className="text-lg font-semibold text-foreground">Modèle BIM 3D</p>
-            <p className="text-sm text-muted-foreground">Klik om te visualiseren in 3D</p>
-          </div>
-        </div>
-      </DialogTrigger>
-
-      <DialogContent className="bg-background border-border shadow-xl p-0 sm:max-w-[90vw] sm:max-h-[90vh]">
-        <DialogTitle className="sr-only">{title}</DialogTitle>
-        <div className="flex flex-col w-full h-[85vh]">
-          <div className="flex items-center justify-between p-4 border-b border-border">
-            <h3 className="text-xl font-semibold">{title}</h3>
-          </div>
-
-          <div className="flex-1 relative">
-            {loading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-background/80 z-10">
-                <div className="text-center">
-                  <div className="animate-spin w-12 h-12 border-4 border-[#A3C4A5] border-t-transparent rounded-full mx-auto mb-4"></div>
-                  <p className="text-muted-foreground">3D-model laden...</p>
-                </div>
-              </div>
-            )}
-
-            {error && (
-              <div className="absolute inset-0 flex items-center justify-center bg-background">
-                <div className="text-center text-destructive">
-                  <X className="w-12 h-12 mx-auto mb-4" />
-                  <p>{error}</p>
-                </div>
-              </div>
-            )}
-
-            <div ref={viewerRef} className="w-full h-full bg-slate-900" />
-          </div>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
-};
 
 // Composant pour images zoomables
 type ZoomableProjectImageProps = {
@@ -268,6 +138,13 @@ const projects = [
     images: [projet8],
     ifcFile: null,
   },
+  {
+    title: "projet 9",
+    description: "",
+    images: [],
+    ifcFile: "/models/ifc.gltf", // ✅ Fichier glTF converti depuis IFC
+  },
+
 
 
 ];

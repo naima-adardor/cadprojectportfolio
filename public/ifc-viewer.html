@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFC Viewer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background: #1a1a2e;
+        }
+
+        #viewer-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        canvas {
+            display: block;
+        }
+
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #A3C4A5;
+            font-size: 18px;
+            text-align: center;
+            z-index: 10;
+            background: rgba(26, 26, 46, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(163, 196, 165, 0.3);
+            border-top: 4px solid #A3C4A5;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #error {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ff6b6b;
+            font-size: 16px;
+            text-align: center;
+            display: none;
+            z-index: 10;
+            background: rgba(26, 26, 46, 0.95);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+
+        #info {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #A3C4A5;
+            font-size: 14px;
+            background: rgba(26, 26, 46, 0.8);
+            padding: 15px;
+            border-radius: 8px;
+            z-index: 5;
+            display: none;
+        }
+
+        #progress {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="viewer-container">
+        <div id="loading">
+            <div class="spinner"></div>
+            <p>Chargement du modèle BIM 3D...</p>
+            <div id="progress">0%</div>
+        </div>
+        <div id="error"></div>
+        <div id="info">
+            <strong>Contrôles:</strong><br>
+            • Rotation: Clic gauche + glisser<br>
+            • Zoom: Molette de la souris<br>
+            • Déplacement: Clic droit + glisser
+        </div>
+    </div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+        const container = document.getElementById('viewer-container');
+        const loading = document.getElementById('loading');
+        const errorDiv = document.getElementById('error');
+        const infoDiv = document.getElementById('info');
+        const progressDiv = document.getElementById('progress');
+
+        // Get file URL from query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        let modelUrl = urlParams.get('url') || '/models/ifc.ifc';
+
+        // Convert .ifc to .gltf if needed
+        if (modelUrl.endsWith('.ifc')) {
+            modelUrl = modelUrl.replace('.ifc', '.gltf');
+        }
+
+        console.log('Loading model from:', modelUrl);
+
+        // Create scene
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xe8e8e8);
+
+        // Create camera
+        const camera = new THREE.PerspectiveCamera(
+            75,
+            window.innerWidth / window.innerHeight,
+            0.1,
+            1000
+        );
+        camera.position.set(15, 15, 15);
+
+        // Create renderer
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        container.appendChild(renderer.domElement);
+
+        // Add OrbitControls
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.minDistance = 1;
+        controls.maxDistance = 500;
+
+        // Add lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(10, 20, 10);
+        directionalLight.castShadow = true;
+        directionalLight.shadow.camera.left = -50;
+        directionalLight.shadow.camera.right = 50;
+        directionalLight.shadow.camera.top = 50;
+        directionalLight.shadow.camera.bottom = -50;
+        scene.add(directionalLight);
+
+        const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.5);
+        directionalLight2.position.set(-10, 10, -10);
+        scene.add(directionalLight2);
+
+        // Add grid
+        const gridHelper = new THREE.GridHelper(100, 100, 0xcccccc, 0xdddddd);
+        scene.add(gridHelper);
+
+        // Add axes helper
+        const axesHelper = new THREE.AxesHelper(10);
+        scene.add(axesHelper);
+
+        // Load glTF model
+        const loader = new GLTFLoader();
+
+        loader.load(
+            modelUrl,
+            // onLoad callback
+            (gltf) => {
+                console.log('Model loaded successfully!', gltf);
+
+                const model = gltf.scene;
+                scene.add(model);
+
+                // Enable shadows
+                model.traverse((child) => {
+                    if (child.isMesh) {
+                        child.castShadow = true;
+                        child.receiveShadow = true;
+                    }
+                });
+
+                // Center camera on model
+                const box = new THREE.Box3().setFromObject(model);
+                const center = box.getCenter(new THREE.Vector3());
+                const size = box.getSize(new THREE.Vector3());
+
+                console.log('Model bounds:', { center, size });
+
+                const maxDim = Math.max(size.x, size.y, size.z);
+                const fov = camera.fov * (Math.PI / 180);
+                let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+                cameraZ *= 1.8; // Zoom out a bit
+
+                camera.position.set(
+                    center.x + cameraZ * 0.7,
+                    center.y + cameraZ * 0.7,
+                    center.z + cameraZ * 0.7
+                );
+                camera.lookAt(center);
+                controls.target.copy(center);
+                controls.update();
+
+                // Hide loading, show info
+                loading.style.display = 'none';
+                infoDiv.style.display = 'block';
+            },
+            // onProgress callback
+            (xhr) => {
+                if (xhr.lengthComputable) {
+                    const percentComplete = (xhr.loaded / xhr.total) * 100;
+                    progressDiv.textContent = Math.round(percentComplete) + '%';
+                    console.log('Loading progress:', Math.round(percentComplete) + '%');
+                }
+            },
+            // onError callback
+            (error) => {
+                console.error('Error loading model:', error);
+                loading.style.display = 'none';
+                errorDiv.style.display = 'block';
+                errorDiv.innerHTML = `
+                    <h3>❌ Erreur de chargement</h3>
+                    <p style="margin-top: 10px;">Impossible de charger le modèle 3D.</p>
+                    <p style="margin-top: 5px; font-size: 14px; color: #999;">Fichier: ${modelUrl}</p>
+                    <p style="margin-top: 5px; font-size: 12px; color: #666;">Erreur: ${error.message || error}</p>
+                    <p style="margin-top: 15px; font-size: 12px; color: #888;">
+                        Vérifiez que le fichier existe et est au bon format (glTF/GLB).
+                    </p>
+                `;
+            }
+        );
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        console.log('Viewer initialized successfully');
+    </script>
+</body>
+
+</html>
