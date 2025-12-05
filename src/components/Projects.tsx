@@ -138,6 +138,12 @@ const projects = [
     images: [projet8],
     ifcFile: null,
   },
+  {
+    title: "projet 9",
+    description: "",
+    images: [],
+    ifcFile: "/models/ifc.gltf", // ✅ Fichier glTF converti depuis IFC
+  },
 
 
 
